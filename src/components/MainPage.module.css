@@ -1,0 +1,73 @@
+.body {
+    color: white;
+    background-image: linear-gradient(to bottom right, rgb(20, 21, 59), rgb(17, 47, 83));
+    width: 100vw;
+    height: 100vh;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.title {
+    visibility: visible;
+    font-size: larger;
+}
+
+.form {
+    visibility: visible;
+    display: flex;
+    flex-direction: column;
+}
+
+.inputDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input {
+    border-radius: 5px;
+    width: 15vw;
+    height: 3vh;
+
+}
+
+.submitDiv {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.submitButton {
+    color: white;
+    background-color: transparent;
+    border-radius: 10px;
+    font-size: large;
+    border-color: white;
+    border-width: 3px;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.submitButton:disabled,
+.submitButton[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.label {
+    font-size: x-large;
+    height: 5vh;
+    margin-bottom: 10px;
+}
+
+.feedback {
+    visibility: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
