@@ -24,63 +24,31 @@ const MainPage = () => {
 
         
         let entry = DB;
-        let projectName = Object.keys(entry)[0];
-        const docRef = doc(store, "onboardxr-db-new23", projectName);
+        let projects = Object.keys(entry);
+        projects.forEach(async (projectName) => {
+            const docRef = doc(store, "onboardxr-db-new23", projectName);
 
-        await setDoc(docRef, DB[projectName], { merge: true });
-        console.log("newDB successfully written!");
-        setUserInput((prevState) => {
-            return {
-                ...prevState,
-                feedback: "success"
+            await setDoc(docRef, DB[projectName], { merge: true });
+            console.log(projectName + " successfully written!");
+            let key = projects.length - 1;
+            if (projectName === projects[key]) {
+                setUserInput((prevState) => {
+                    return {
+                        ...prevState,
+                        feedback: "success"
+                    }
+                });
+                setTimeout(() => {
+                    setUserInput((prevState) => {
+                        return {
+                            ...prevState,
+                            feedback: "",
+                            disabled: false
+                        }
+                    });
+                }, 3500);
             }
         });
-        setTimeout(() => {
-            setUserInput((prevState) => {
-                return {
-                    ...prevState,
-                    feedback: "",
-                    disabled: false
-                }
-            });
-        }, 3500);
-        // docRef.set(DB)
-        // .then(() => {
-        //     console.log("newDB successfully written!");
-        //     setUserInput((prevState) => {
-        //         return {
-        //             ...prevState,
-        //             feedback: "success"
-        //         }
-        //     });
-        //     setTimeout(() => {
-        //         setUserInput((prevState) => {
-        //             return {
-        //                 ...prevState,
-        //                 feedback: "",
-        //                 disabled: false
-        //             }
-        //         });
-        //     }, 3500);
-        // })
-        // .catch((error) => {
-        //     console.error("Error writing document: ", error);
-        //     setUserInput((prevState) => {
-        //         return {
-        //             ...prevState,
-        //             feedback: "error " + error.stringify()
-        //         }
-        //     });
-        //     setTimeout(() => {
-        //         setUserInput((prevState) => {
-        //             return {
-        //                 ...prevState,
-        //                 feedback: "",
-        //                 disabled: false
-        //             }
-        //         });
-        //     }, 3500);
-        // });
     }
 
     return (

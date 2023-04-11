@@ -1,1 +1,4 @@
 node_modules
+src/assets/DBnew.json
+src/assets/DBREAL.json
+src/baseREAL.js
