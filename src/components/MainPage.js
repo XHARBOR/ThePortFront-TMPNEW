@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
-import {store} from "../base";
+import { appDB } from "../base";
 import styles from "./MainPage.module.css"
 import DB from "../assets/DB.json"
-import { doc, getDoc, setDoc, query, where } from "firebase/firestore"; 
+import { getDatabase, ref, update } from "firebase/database"; 
+
 
 const MainPage = () => {
     const [userInput, setUserInput] = useState({
         feedback: "",
         disabled: false
     });
-
 
     const writeDB = async (e) => {
         e.preventDefault();
@@ -21,34 +21,54 @@ const MainPage = () => {
             }
         });
 
-
-        
         let entry = DB;
-        let projects = Object.keys(entry);
-        projects.forEach(async (projectName) => {
-            const docRef = doc(store, "onboardxr-db-new23", projectName);
+        const dbRef = ref(getDatabase(appDB));
 
-            await setDoc(docRef, DB[projectName], { merge: true });
-            console.log(projectName + " successfully written!");
-            let key = projects.length - 1;
-            if (projectName === projects[key]) {
+        const updates = {};
+        let projects = Object.keys(entry['projects']);
+        projects.forEach(project => {
+            updates['/projects/' + project] = entry['projects'][project];
+        })
+        let users = Object.keys(entry['userMap']);
+        users.forEach(user => {
+            updates['/userMap/' + user] = entry['userMap'][user];
+        })
+
+        update(dbRef, updates)
+        .then(() => {
+            setUserInput((prevState) => {
+                return {
+                    ...prevState,
+                    feedback: "success"
+                }
+            });
+            setTimeout(() => {
                 setUserInput((prevState) => {
                     return {
                         ...prevState,
-                        feedback: "success"
+                        feedback: "",
+                        disabled: false
                     }
                 });
-                setTimeout(() => {
-                    setUserInput((prevState) => {
-                        return {
-                            ...prevState,
-                            feedback: "",
-                            disabled: false
-                        }
-                    });
-                }, 3500);
-            }
-        });
+            }, 3500);
+          })
+          .catch((error) => {
+            setUserInput((prevState) => {
+                return {
+                    ...prevState,
+                    feedback: "failure"
+                }
+            });
+            setTimeout(() => {
+                setUserInput((prevState) => {
+                    return {
+                        ...prevState,
+                        feedback: "",
+                        disabled: false
+                    }
+                });
+            }, 3500);
+          });
     }
 
     return (
