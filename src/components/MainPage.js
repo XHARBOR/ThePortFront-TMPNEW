@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import { appDB } from "../base";
 import styles from "./MainPage.module.css"
 import DB from "../assets/DB.json"
@@ -11,7 +11,14 @@ const MainPage = () => {
         disabled: false
     });
 
+    const divRef = useRef();
+
+    useEffect(() => {
+        divRef.current.focus();
+    }, [])
+
     const writeDB = async (e) => {
+        if (!e.key || e.key !== "Enter" || userInput.disabled) return;
         e.preventDefault();
         console.log('submitting');
         setUserInput((prevState) => {
@@ -72,7 +79,7 @@ const MainPage = () => {
     }
 
     return (
-        <div className={styles.body}>
+        <div ref={divRef} tabIndex={0} className={styles.body} onKeyDown={writeDB}>
             <div className={styles.title}>
                 <h1>write your project</h1>
             </div>

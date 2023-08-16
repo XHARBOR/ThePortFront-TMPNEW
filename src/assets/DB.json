@@ -47,7 +47,50 @@
               "walkable": false,
               "interactable": true,
               "physics": true,
-              "animation": "Animation"
+              "playback": ""
+            }
+          }
+        },
+        {
+          "trig": {
+            "name": "test_spawn_light",
+            "group": "none"
+          },
+          "target": {
+            "scene": [
+              "world"
+            ],
+            "room": [
+              "none"
+            ],
+            "role": [
+              "stagemanager"
+            ],
+            "name": [
+              "mikeHyperfy"
+            ]
+          },
+          "action": {
+            "delay": 1000,
+            "type": "spawn_object",
+            "src": "pointlight",
+            "transform": {
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              }
+            },
+            "options": {
+              "color": "red",
+              "intensity": 1000,
+              "distance": 0,
+              "decay": 1
             }
           }
         },
@@ -79,6 +122,187 @@
         {
           "trig": {
             "name": "test_transform_object",
+            "group": "test_transform_object_bunch"
+          },
+          "target": {
+            "scene": [
+              "world"
+            ],
+            "room": [
+              "none"
+            ],
+            "role": [
+              "individualUser"
+            ],
+            "name": [
+              "mikeHyperfy"
+            ]
+          },
+          "action": {
+            "delay": 0,
+            "type": "object_transform",
+            "spawn_cue": "test_spawn_light",
+            "property": "position",
+            "steps": [
+              {
+                "x": 0,
+                "y": 100,
+                "z": 0,
+                "delay": 0,
+                "duration": 10000,
+                "easing": "QUAD_IN"
+              }
+            ]
+          }
+        },
+        {
+          "trig": {
+            "name": "test_transform_object",
+            "group": "test_transform_object_bunch"
+          },
+          "target": {
+            "scene": [
+              "world"
+            ],
+            "room": [
+              "none"
+            ],
+            "role": [
+              "individualUser"
+            ],
+            "name": [
+              "mikeHyperfy"
+            ]
+          },
+          "action": {
+            "delay": 20000,
+            "type": "object_transform",
+            "spawn_cue": "test_spawn_object",
+            "property": "position",
+            "steps": [
+              {
+                "x": 0,
+                "y": 500,
+                "z": 0,
+                "delay": 0,
+                "duration": 3000,
+                "easing": "QUAD_IN"
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "delay": 0,
+                "duration": 3000,
+                "easing": "QUAD_OUT"
+              }
+            ]
+          }
+        },
+        {
+          "trig": {
+            "name": "test_transform_object",
+            "group": "test_transform_object_bunch"
+          },
+          "target": {
+            "scene": [
+              "world"
+            ],
+            "room": [
+              "none"
+            ],
+            "role": [
+              "individualUser"
+            ],
+            "name": [
+              "mikeHyperfy"
+            ]
+          },
+          "action": {
+            "delay": 2000,
+            "type": "object_transform",
+            "spawn_cue": "test_spawn_object",
+            "property": "scale",
+            "steps": [
+              {
+                "x": 3,
+                "y": 3,
+                "z": 3,
+                "delay": 0,
+                "duration": 3000,
+                "easing": "QUAD_IN"
+              },
+              {
+                "x": 1,
+                "y": 1,
+                "z": 1,
+                "delay": 0,
+                "duration": 3000,
+                "easing": "QUAD_OUT"
+              }
+            ]
+          }
+        },
+        {
+          "trig": {
+            "name": "test_options_update",
+            "group": "none"
+          },
+          "target": {
+            "scene": [
+              "world"
+            ],
+            "room": [
+              "none"
+            ],
+            "role": [
+              "individualUser"
+            ],
+            "name": [
+              "mikeHyperfy"
+            ]
+          },
+          "action": {
+            "delay": 0,
+            "type": "update_options",
+            "spawn_cue": "test_spawn_object",
+            "options" : {
+              "networked": true,
+              "walkable": true,
+              "interactable": true,
+              "physics": true,
+              "playback": "Animation"
+            }
+          }
+        },
+        {
+          "trig": {
+            "name": "test_update_avatar",
+            "group": "none"
+          },
+          "target": {
+            "scene": [
+              "world"
+            ],
+            "room": [
+              "none"
+            ],
+            "role": [
+              "individualUser"
+            ],
+            "name": [
+              "mikeHyperfy"
+            ]
+          },
+          "action": {
+            "delay": 0,
+            "type": "user_avatar",
+            "src": "test_change_avatar.vrm"
+          }
+        },
+        {
+          "trig": {
+            "name": "test_teleport_waypoint",
             "group": "none"
           },
           "target": {
@@ -97,27 +321,133 @@
           },
           "action": {
             "delay": 1000,
-            "type": "object_transform",
-            "spawn_cue": "test_spawn_object",
+            "type": "teleport_waypoint",
+            "waypoint": "testplace"
+          }
+        },
+        {
+          "trig": {
+            "name": "test_transform_user",
+            "group": "none"
+          },
+          "target": {
+            "scene": [
+              "world"
+            ],
+            "room": [
+              "none"
+            ],
+            "role": [
+              "individualUser"
+            ],
+            "name": [
+              "mikeHyperfy"
+            ]
+          },
+          "action": {
+            "delay": 0,
+            "type": "transform_user",
             "property": "position",
             "steps": [
               {
                 "x": 0,
-                "y": 5,
+                "y": 100,
                 "z": 0,
                 "delay": 0,
-                "duration": 3000,
-                "easing": "QUAD_IN_OUT"
+                "duration": 5000,
+                "easing": "QUAD_IN"
               },
               {
-                "x": 0,
+                "x": 100,
                 "y": 0,
                 "z": 0,
-                "delay": 5000,
-                "duration": 3000,
-                "easing": "QUAD_IN_OUT"
+                "delay": 0,
+                "duration": 5000,
+                "easing": "QUAD_OUT"
               }
             ]
+          }
+        },
+        {
+          "trig": {
+            "name": "test_recall_user",
+            "group": "none"
+          },
+          "target": {
+            "scene": [
+              "world"
+            ],
+            "room": [
+              "none"
+            ],
+            "role": [
+              "individualUser"
+            ],
+            "name": [
+              "mikeHyperfy"
+            ]
+          },
+          "action": {
+            "delay": 1000,
+            "type": "recall_user",
+            "point": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "radius": 3,
+            "duration": 3000,
+            "easing": "QUAD_IN_OUT"
+          }
+        },
+        {
+          "trig": {
+            "name": "test_disable_user_movement",
+            "group": "none"
+          },
+          "target": {
+            "scene": [
+              "world"
+            ],
+            "room": [
+              "none"
+            ],
+            "role": [
+              "individualUser"
+            ],
+            "name": [
+              "mikeHyperfy"
+            ]
+          },
+          "action": {
+            "delay": 0,
+            "type": "user_movement",
+            "should_disable": true
+          }
+        },
+        {
+          "trig": {
+            "name": "test_enable_user_movement",
+            "group": "none"
+          },
+          "target": {
+            "scene": [
+              "world"
+            ],
+            "room": [
+              "none"
+            ],
+            "role": [
+              "individualUser"
+            ],
+            "name": [
+              "mikeHyperfy"
+            ]
+          },
+          "action": {
+            "delay": 0,
+            "type": "user_movement",
+            "should_disable": false
           }
         }
       ],
@@ -155,32 +485,107 @@
             },
             "scale": 0.5,
             "reactivationTimeout": 1000
-          }
-        ],
-        "clemHyperfy": [
+          },
           {
-            "group": false,
-            "name": "test_individual_cue_role",
+            "group": true,
+            "name": "test_transform_object_bunch",
             "position": {
-              "x": 3,
-              "y": 0,
-              "z": 2
+              "x": 10,
+              "y": 1,
+              "z": 12
             },
-            "scale": 1,
+            "scale": 0.5,
             "reactivationTimeout": 1000
           },
           {
             "group": false,
-            "name": "test_individual_cue_name",
+            "name": "test_options_update",
             "position": {
-              "x": 5,
-              "y": 0,
-              "z": 5
+              "x": 13,
+              "y": 1,
+              "z": 15
             },
-            "scale": 1,
-            "reactivationTimeout": 5000
+            "scale": 0.5,
+            "reactivationTimeout": 1000
+          },
+          {
+            "group": false,
+            "name": "test_update_avatar",
+            "position": {
+              "x": 16,
+              "y": 1,
+              "z": 17
+            },
+            "scale": 0.5,
+            "reactivationTimeout": 1000
+          },
+          {
+            "group": false,
+            "name": "test_teleport_waypoint",
+            "position": {
+              "x": 18,
+              "y": 1,
+              "z": 19
+            },
+            "scale": 0.5,
+            "reactivationTimeout": 1000
+          },
+          {
+            "group": false,
+            "name": "test_transform_user",
+            "position": {
+              "x": 20,
+              "y": 1,
+              "z": 21
+            },
+            "scale": 0.5,
+            "reactivationTimeout": 1000
+          },
+          {
+            "group": false,
+            "name": "test_recall_user",
+            "position": {
+              "x": 23,
+              "y": 1,
+              "z": 23
+            },
+            "scale": 0.5,
+            "reactivationTimeout": 1000
+          },
+          {
+            "group": false,
+            "name": "test_disable_user_movement",
+            "position": {
+              "x": 25,
+              "y": 1,
+              "z": 25
+            },
+            "scale": 0.5,
+            "reactivationTimeout": 1000
+          },
+          {
+            "group": false,
+            "name": "test_enable_user_movement",
+            "position": {
+              "x": 27,
+              "y": 1,
+              "z": 27
+            },
+            "scale": 0.5,
+            "reactivationTimeout": 1000
+          },
+          {
+            "group": false,
+            "name": "test_spawn_light",
+            "position": {
+              "x": 29,
+              "y": 1,
+              "z": 29
+            },
+            "scale": 0.5,
+            "reactivationTimeout": 1000
           }
-        ]
+        ]    
       },
       "objMap": {},
       "animMap": {}
