@@ -65,7 +65,7 @@ _How can I scope cues to individual users?_\
 You should use **usernames** to target individual users with cues. While we have previously used displayNames to scope cues this way, this new structure relies on usernames only. 
 
 _What username should my event attendees use to sign in?_\
-TBD
+You should manually create usernames for your project to segment your audience just as you would for your team.
 
 ### Project Data
 The `projects` section of the OBXR database contains all of the cueing data for each project. Each project name should be unique and should be the same as the project name specified for its users in the `userMap` section of the database. 
